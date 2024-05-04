@@ -5,6 +5,8 @@
 <configuration>
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--开启延迟加载-->
+<!--        <setting name="lazyLoadingEnable" value="true"/>-->
     </settings>
     <typeAliases>
         <typeAlias type="com.yunzhi.mybatis.entity.User" alias="User"></typeAlias>

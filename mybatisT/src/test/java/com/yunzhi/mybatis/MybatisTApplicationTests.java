@@ -1,7 +1,9 @@
 package com.yunzhi.mybatis;
 
+import com.yunzhi.mybatis.entity.Classes;
 import com.yunzhi.mybatis.entity.Student;
 import com.yunzhi.mybatis.entity.User;
+import com.yunzhi.mybatis.mapper.ClassesMapper;
 import com.yunzhi.mybatis.mapper.StudentMapper;
 import com.yunzhi.mybatis.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
@@ -67,10 +69,16 @@ class MybatisTApplicationTests {
 
     @Test
     void testStudent() {
-        StudentMapper studentMapper = this.getMapperAll(StudentMapper.class);
-
+        StudentMapper studentMapper = this.getByMapper(StudentMapper.class);
         Student byId = studentMapper.getById(1);
         System.out.println(byId);
+    }
+
+    @Test
+    void testClasses() {
+        ClassesMapper classesMapper = this.getByMapper(ClassesMapper.class);
+        Classes classesAndStudent = classesMapper.getClassesAndStudent(1);
+        System.out.println(classesAndStudent);
     }
 
     UserMapper getMapper() {
@@ -85,15 +93,15 @@ class MybatisTApplicationTests {
         }
     }
 
-    <T> T getMapperAll(Class<T> t) {
-         try {
-             InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-             SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
-             SqlSessionFactory build = sqlSessionFactoryBuilder.build(is);
-             SqlSession sqlSession = build.openSession(true);
-             return sqlSession.getMapper(t);
-         } catch (Exception e) {
-             throw new RuntimeException(e);
-         }
+    <T> T getByMapper(Class<T> t) {
+        try {
+            InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+            SqlSessionFactory build = sqlSessionFactoryBuilder.build(is);
+            SqlSession sqlSession = build.openSession(true);
+            return sqlSession.getMapper(t);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

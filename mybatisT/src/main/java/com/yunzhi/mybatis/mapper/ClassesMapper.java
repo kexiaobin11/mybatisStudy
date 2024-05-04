@@ -5,5 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface ClassesMapper {
 
-    Classes getById(@Param("class_id") Integer class_id);
+    Classes getById(@Param("class_id") Integer classId);
+
+    Classes getClassesAndStudent(@Param("class_id") Integer classId);
 }
