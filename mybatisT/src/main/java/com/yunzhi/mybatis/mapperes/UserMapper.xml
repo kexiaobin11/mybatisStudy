@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunzhi.mybatis.mapperes.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yunzhi.mybatis.pojo.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="delete_at" jdbcType="BIGINT" property="deleteAt" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+  </resultMap>
+</mapper>

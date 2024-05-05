@@ -19,4 +19,5 @@
     <select id="getByClassesId" resultType="com.yunzhi.mybatis.entity.Student">
         select * from student where class_id = #{class_id}
     </select>
+
 </mapper>

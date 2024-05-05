@@ -7,4 +7,8 @@ import java.util.List;
 public interface DynamicSQLMapper {
 
     List<Student> getByStudentCondition(Student student);
+
+    List<Student> getStudentByChoose(Student student);
+
+    int deleteMoreByArray(Integer[] ids);
 }
