@@ -19,7 +19,6 @@ class DynamicSQLMapperTest {
         student.setStudentId(1);
         List<Student> byStudentCondition = mapper.getByStudentCondition(student);
         System.out.println(byStudentCondition);
-
     }
 
 }
