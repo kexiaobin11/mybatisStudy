@@ -1,7 +1,9 @@
 package com.yunzhi.mybatis;
 
+import com.yunzhi.mybatis.entity.Classes;
 import com.yunzhi.mybatis.entity.Student;
 import com.yunzhi.mybatis.entity.User;
+import com.yunzhi.mybatis.mapper.ClassesMapper;
 import com.yunzhi.mybatis.mapper.StudentMapper;
 import com.yunzhi.mybatis.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
@@ -16,7 +18,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @SpringBootTest
-class MybatisTApplicationTests {
+public class MybatisTApplicationTests {
 
     @Test
     void contextLoads() {
@@ -67,10 +69,23 @@ class MybatisTApplicationTests {
 
     @Test
     void testStudent() {
-        StudentMapper studentMapper = this.getMapperAll(StudentMapper.class);
-
+        StudentMapper studentMapper = this.getByMapper(StudentMapper.class);
         Student byId = studentMapper.getById(1);
         System.out.println(byId);
+    }
+
+    @Test
+    void testClasses() {
+        ClassesMapper classesMapper = this.getByMapper(ClassesMapper.class);
+        Classes classesAndStudent = classesMapper.getByIdClasses(1);
+        System.out.println(classesAndStudent);
+    }
+
+    @Test
+    void testClassesAndStudent() {
+        ClassesMapper classesMapper = this.getByMapper(ClassesMapper.class);
+        Classes byIdClassesAndStudent = classesMapper.getByIdClassesAndStudent(1);
+        System.out.println(byIdClassesAndStudent);
     }
 
     UserMapper getMapper() {
@@ -85,15 +100,15 @@ class MybatisTApplicationTests {
         }
     }
 
-    <T> T getMapperAll(Class<T> t) {
-         try {
-             InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
-             SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
-             SqlSessionFactory build = sqlSessionFactoryBuilder.build(is);
-             SqlSession sqlSession = build.openSession(true);
-             return sqlSession.getMapper(t);
-         } catch (Exception e) {
-             throw new RuntimeException(e);
-         }
+    public static <T> T getByMapper(Class<T> t) {
+        try {
+            InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+            SqlSessionFactory build = sqlSessionFactoryBuilder.build(is);
+            SqlSession sqlSession = build.openSession(true);
+            return sqlSession.getMapper(t);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
