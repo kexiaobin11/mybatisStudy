@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @SpringBootTest
-class MybatisTApplicationTests {
+public class MybatisTApplicationTests {
 
     @Test
     void contextLoads() {
@@ -77,8 +77,15 @@ class MybatisTApplicationTests {
     @Test
     void testClasses() {
         ClassesMapper classesMapper = this.getByMapper(ClassesMapper.class);
-        Classes classesAndStudent = classesMapper.getClassesAndStudent(1);
+        Classes classesAndStudent = classesMapper.getByIdClasses(1);
         System.out.println(classesAndStudent);
+    }
+
+    @Test
+    void testClassesAndStudent() {
+        ClassesMapper classesMapper = this.getByMapper(ClassesMapper.class);
+        Classes byIdClassesAndStudent = classesMapper.getByIdClassesAndStudent(1);
+        System.out.println(byIdClassesAndStudent);
     }
 
     UserMapper getMapper() {
@@ -93,7 +100,7 @@ class MybatisTApplicationTests {
         }
     }
 
-    <T> T getByMapper(Class<T> t) {
+    public static <T> T getByMapper(Class<T> t) {
         try {
             InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
             SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();

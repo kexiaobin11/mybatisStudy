@@ -11,12 +11,23 @@
             <result property="studentName" column="student_name"></result>
         </collection>
     </resultMap>
+    
+    <resultMap id="classesAndStudentByStep" type="com.yunzhi.mybatis.entity.Classes">
+        <id property="classId" column="class_id"></id>
+        <result property="className" column="class_name"></result>
+        <collection property="students" select="com.yunzhi.mybatis.mapper.StudentMapper.getByClassesId" column="class_id">
+        </collection>
+    </resultMap>
 
     <select id="getById" resultType="com.yunzhi.mybatis.entity.Classes">
         select * from classes where class_id = #{class_id}
     </select>
 
-    <select id="getClassesAndStudent" resultMap="classesAndStudentMap">
+    <select id="getByIdClasses" resultMap="classesAndStudentMap">
         select * from classes left join student on classes.class_id = student.class_id where classes.class_id = #{class_id}
+    </select>
+
+    <select id="getByIdClassesAndStudent" resultMap="classesAndStudentByStep">
+        select * from classes where class_id = #{class_id}
     </select>
 </mapper>

@@ -7,5 +7,7 @@ public interface ClassesMapper {
 
     Classes getById(@Param("class_id") Integer classId);
 
-    Classes getClassesAndStudent(@Param("class_id") Integer classId);
+    Classes getByIdClasses(@Param("class_id") Integer classId);
+
+    Classes getByIdClassesAndStudent(@Param("class_id") Integer classId);
 }
