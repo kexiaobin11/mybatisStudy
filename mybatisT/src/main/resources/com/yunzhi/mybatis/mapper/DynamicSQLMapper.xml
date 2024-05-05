@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yunzhi.mybatis.mapper.DynamicSQLMapper">
-    <select id="getByStudentCondition" resultType="com.yunzhi.mybatis.entity.Student">
+    <select id="getByStudentConditionOne" resultType="com.yunzhi.mybatis.entity.Student">
         select * from student where 1=1
         <if test="studentName != null and studentName != ''">
             student_name = #{studentName}
@@ -13,4 +13,56 @@
             and student_id = #{studentId}
         </if>
     </select>
+
+    <select id="getByStudentConditionTwo" resultType="com.yunzhi.mybatis.entity.Student">
+        select * from student
+        <where>
+            <if test="studentName != null and studentName != ''">
+                student_name = #{studentName}
+            </if>
+            <if test="studentId != null and studentId != ''">
+                student_id = #{studentId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByStudentCondition" resultType="com.yunzhi.mybatis.entity.Student">
+        select * from student
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="studentName != null and studentName != ''">
+                student_name = #{studentName}
+            </if>
+            <if test="studentId != null and studentId != ''">
+                student_id = #{studentId}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getStudentByChoose" resultType="com.yunzhi.mybatis.entity.Student">
+        select * from student
+        <where>
+            <choose>
+                <when test="studentName != null and studentName != ''">
+                    student_name = #{studentName}
+                </when>
+                <when test="studentId != null and studentId != ''">
+                    student_id = #{studentId}
+                </when>
+                <otherwise>
+                    student_id = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <delete id="deleteMoreByArray">
+<!--        delete from student where student_id in-->
+<!--        (<foreach collection="ids" item="id" separator=",">-->
+<!--            #{id}-->
+<!--        </foreach>)-->
+        delete from student where
+        <foreach collection="ids" item="id" separator="or">
+            student_id = #{id}
+        </foreach>
+    </delete>
 </mapper>
