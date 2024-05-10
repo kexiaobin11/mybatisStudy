@@ -14,7 +14,10 @@ mybatis:
   type-aliases-package: yunzhi.mybatis.entities;
   configuration:
     map-underscore-to-camel-case: true
-
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  global-config:
+#    db-config:
+#      table-prefix: t_
+#      id-type: auto

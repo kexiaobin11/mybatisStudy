@@ -1,5 +1,8 @@
 package com.yunzhi.mybatis.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -7,7 +10,9 @@ import lombok.Data;
  * @author kexiaobin
  */
 @Data
+@TableName("user")
 public class User {
+    @TableId(value = "uid", type = IdType.AUTO)
     private Long id;
 
     private String name;
