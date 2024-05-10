@@ -36,4 +36,10 @@ class UserServiceImplTest {
         boolean b = userService.saveBatch(list);
         Assert.isTrue(b, "添加失败");
     }
+
+    @Test
+    void getAll() {
+        List<User> list = this.userService.list();
+        System.out.println(list);
+    }
 }

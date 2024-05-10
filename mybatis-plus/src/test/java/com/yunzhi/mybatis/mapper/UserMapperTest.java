@@ -47,7 +47,7 @@ class UserMapperTest {
 
     @Test
     void testDelete() {
-        int result = userMapper.deleteById(1787101488624033794L);
+        int result = userMapper.deleteById(1L);
         Assert.isTrue(result > 0, "删除失败");
     }
 
