@@ -1,7 +1,10 @@
 package com.yunzhi.mybatis;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.mysql.cj.util.StringUtils;
 import com.yunzhi.mybatis.mapper.UserMapper;
 import com.yunzhi.mybatis.pojo.User;
 import org.junit.jupiter.api.Test;
@@ -80,5 +83,40 @@ public class UserWrapperTest {
         updateWrapper.set("name", "yunzhi.club").set("email", "yunzhi.club@163.com");
         int update = userMapper.update(updateWrapper);
         System.out.println(update + "update");
+    }
+
+    @Test
+    public void test10() {
+        String name = "";
+        Integer ageBegin = null;
+        Integer ageEnd = 30;
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .le(ageEnd != null, "age", ageEnd);
+        List<User> users = userMapper.selectList(queryWrapper);
+        users.forEach(System.out::println);
+    }
+
+    @Test
+    void test11() {
+        String name = "a";
+        Integer ageBegin = null;
+        Integer ageEnd = 30;
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(StringUtils.isNullOrEmpty(name), User::getName, name)
+                .ge(ageBegin != null, User::getAge, ageBegin)
+                .le(ageEnd != null, User::getAge, ageEnd);
+        List<User> users = userMapper.selectList(queryWrapper);
+        users.forEach(System.out::println);
+    }
+
+    @Test
+    void test12() {
+        String name = "a";
+        Integer ageBegin = null;
+        Integer ageEnd = 30;
+        LambdaUpdateWrapper<User> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+        lambdaUpdateWrapper.like(StringUtils.isNullOrEmpty(name), User::getName, name)
+                .gt(User::getAge, ageBegin);
     }
 }

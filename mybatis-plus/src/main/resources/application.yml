@@ -17,6 +17,8 @@ mybatis:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.yunzhi.mybatis.pojo
+  type-enums-package: com.yunzhi.mybatis.enums
 #  global-config:
 #    db-config:
 #      table-prefix: t_
