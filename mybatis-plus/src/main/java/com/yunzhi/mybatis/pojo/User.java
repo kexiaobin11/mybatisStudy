@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.yunzhi.mybatis.enums.SexEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,9 +12,8 @@ import lombok.Data;
  * @author kexiaobin
  */
 @Data
-@TableName("user")
+@TableName("t_user")
 public class User {
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     private String name;
@@ -25,4 +25,6 @@ public class User {
     // 逻辑删除
     @TableLogic
     private Integer isDeleted;
+
+    private SexEnum sex;
 }

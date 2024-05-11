@@ -11,15 +11,11 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: yunzhi.mybatis.entities;
+  type-aliases-package: com.yunzhi.mybatisplus.mapper
   configuration:
     map-underscore-to-camel-case: true
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  type-aliases-package: com.yunzhi.mybatis.pojo
-  type-enums-package: com.yunzhi.mybatis.enums
-#  global-config:
-#    db-config:
-#      table-prefix: t_
-#      id-type: auto
+  type-aliases-package: com.yunzhi.mybatisplus.pojo
+  type-enums-package: com.yunzhi.mybatisplus.enums

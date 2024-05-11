@@ -1,5 +1,6 @@
 package com.yunzhi.mybatis.mapper;
 
+import com.yunzhi.mybatis.enums.SexEnum;
 import com.yunzhi.mybatis.pojo.User;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -87,5 +88,15 @@ class UserMapperTest {
     void testSelectMapById() {
         Map<String, Object> map = this.userMapper.selectMapById(1L);
         log.info(map.toString());
+    }
+
+    @Test
+    void testSexEnum() {
+        User user = new User();
+        user.setAge(33);
+        user.setName("admin");
+        user.setSex(SexEnum.MALE);
+        int result = userMapper.insert(user);
+        System.out.println(result + ": result");
     }
 }
